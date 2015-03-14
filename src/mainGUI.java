@@ -1,3 +1,4 @@
+import java.awt.Component;
 import java.awt.Container;
 import java.awt.GridBagConstraints;
 import java.awt.GridBagLayout;
@@ -6,23 +7,36 @@ import java.awt.event.ActionListener;
 
 import javax.swing.JCheckBoxMenuItem;
 import javax.swing.JFrame;
+import javax.swing.JLabel;
 import javax.swing.JMenu;
 import javax.swing.JMenuBar;
 import javax.swing.JMenuItem;
 import javax.swing.JPanel;
 import javax.swing.JTabbedPane;
+import javax.swing.JTextArea;
+import javax.swing.JTextField;
 
 
 public class mainGUI extends JFrame {
 
 	
-	JMenuBar 		menuBar;
-	JMenu			file_menu;
-	JMenuItem		save, load, open, exit;
-	JMenu			edit_menu;
-	JMenuItem		godMode, color;
-	JMenu			help_menu;
-	JMenuItem		help, contact;
+	JMenuBar 			menuBar;
+	JMenu				file_menu;
+	JMenuItem			save, load, open, exit;
+	JMenu				edit_menu;
+	JMenuItem			godMode, color;
+	JMenu				help_menu;
+	JMenuItem			help, contact;
+	
+	JTextArea			name, race, height, weight, age, gender, alignment, origin, residence, deity, skin, languages, eyes, hair;
+	JLabel				lname, lrace, lheight, wleight, lage, lgender, lalignment, lorigin, lresidence, ldeity, lskin, llanguages, leyes, lhair;
+	JTextArea			total_health, current_health, exp, fort, refl, will, init, atk1, atk2, atk3, atk4, ac, armor, shield, dex_ac, misc;
+	JTextArea			str, dex, con, intel, wis, cha;
+	
+	JTabbedPane			jtp;
+	JPanel 				stats, items, spells, races, classes;
+	
+	
 	static mainGUI 		test;
 	
 	
@@ -84,7 +98,7 @@ public class mainGUI extends JFrame {
 		mc.fill = GridBagConstraints.HORIZONTAL;
 		c.add(menuBar, mc);
 		 
-		JTabbedPane jtp = new JTabbedPane();
+		this.jtp = new JTabbedPane();
 		GridBagConstraints cst = new GridBagConstraints();
 		cst.fill = GridBagConstraints.BOTH;
 		cst.gridwidth = layout.columnWidths.length;
@@ -92,12 +106,48 @@ public class mainGUI extends JFrame {
 		cst.gridy = 1;
 		c.add(jtp, cst);
 		
-		JPanel stats = new JPanel();
+		this.stats = new JPanel();
 		stats.setLayout(layout);
-		JPanel items = new JPanel();
+		this.items = new JPanel();
 		items.setLayout(layout);
-		JPanel spells = new JPanel();
+		this.spells = new JPanel();
 		spells.setLayout(layout);
+		
+		GridBagConstraints gb = new GridBagConstraints();
+		name = new JTextArea("Name");
+		lname = new JLabel("Name");
+		gb.gridwidth = 4;
+		gb.gridx = 2;
+		gb.fill = GridBagConstraints.HORIZONTAL;
+		
+		stats.add(name, gb);
+		
+		gb.gridwidth = 2;
+		gb.gridx = 0;
+		gb.fill = GridBagConstraints.NONE;
+		gb.anchor = GridBagConstraints.CENTER;
+		
+		stats.add(lname, gb);
+		
+		race = new JTextArea("Race");
+		lrace = new JLabel("Race");
+		gb = new GridBagConstraints();
+		
+		gb.gridwidth = 4;
+		gb.gridx = 2;
+		gb.gridy = 1;
+		gb.fill = GridBagConstraints.HORIZONTAL;
+		
+		stats.add(race, gb);
+		
+		gb.gridwidth = 2;
+		gb.gridx = 0;
+		gb.fill = GridBagConstraints.NONE;
+		gb.anchor = GridBagConstraints.CENTER;
+		
+		stats.add(lrace, gb);
+		
+		
 		
 		jtp.addTab("Stats", stats);
 		jtp.addTab("Items", items);
